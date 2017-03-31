@@ -16,6 +16,10 @@ struct PhotoRating {
     var likes = 0    {  didSet {  if likes > maxValue { likes = 0 }  }  }
     var circles = 0  {  didSet {  if circles > maxValue { circles = 0 }  }  }
     
+    var maxPoints:Int{
+        return max(stars, likes, circles)
+    }
+    
     var hasAtLeastOnePoint:Bool {
         return stars + likes + circles > 0
     }

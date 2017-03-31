@@ -124,6 +124,9 @@ class GalleryViewController: UIViewController {
             addButton.isEnabled = false
         }
         collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
 
@@ -163,6 +166,7 @@ extension GalleryViewController: UICollectionViewDataSource {
         let asset = filteredAssets[indexPath.row]
         let image = ImagesLoader.loadImage(from: asset, width: cell.bounds.width * 2, height: cell.bounds.height * 2, highQuaility: false)
         cell.imageView.image = image
+        cell.rating = ratingLoader.ratingOf(assetId: asset.localIdentifier)
         return cell
     }
 }
